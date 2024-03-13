@@ -47,21 +47,23 @@ public class StationAcceptanceTest {
         Map<String, String> params = new HashMap<>();
         params.put("name", 가산디지털단지역);
 
-        // when
-        RestAssured
+        ExtractableResponse<Response> response = RestAssured
                 .given().log().all()
-                    .body(params)
-                    .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .body(params)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .when()
-                    .post("/stations")
+                .post("/stations")
                 .then().log().all()
-                    .statusCode(HttpStatus.CREATED.value());
+                .extract();
+
+        // when
+        assertThat(response.statusCode()).isEqualTo(HttpStatus.CREATED.value());
 
         // then
-        List<String> stationNames = RestAssured.given()
+        List<String> stationNames = RestAssured.given().log().all()
                 .when()
                     .get("/stations")
-                .then()
+                .then().log().all()
                     .extract().jsonPath().getList("name", String.class);
 
         assertThat(stationNames).containsExactly(가산디지털단지역);
