@@ -1,0 +1,1 @@
+# 테스트 코드에서 JPA의 dirty checking
