@@ -1,0 +1,52 @@
+spring:
+  profiles:
+    active: dev # defualt
+    group:
+      dev:
+        - common
+        - dev
+
+---
+spring:
+  config:
+    activate:
+      on-profile: common
+
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mysql://localhost:3306/test?rewriteBatchedStatements=true&profileSQL=true&logger=Slf4JLogger&maxQuerySizeToLog=999999
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: qudrnr132!
+
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.orm.jpa: DEBUG
+    org.springframework.transaction: DEBUG
+    org.hibernate.type.descriptor.sql: trace
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+security:
+  jwt:
+    token:
+      secret-key: atdd-secret-key
+      expire-length: 3600000
+
+github:
+  base-url: https://github.com/
+  client:
+    id: client-id
+    secret: github-client-secret
