@@ -41,7 +41,7 @@ public class Coupon {
     @JoinColumn(name = "ADMIN_EMAIL")
     private String issuerAdminEmail;
 
-    @OneToMany(mappedBy = "coupon", orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "coupon", cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.LAZY)
     private final List<IssuedCoupon> issuedCoupons = new ArrayList<>();
 
     @Version
@@ -58,7 +58,7 @@ public class Coupon {
         this.issuerAdminEmail = issuerAdminEmail;
     }
 
-    public void deductCouponCount(List<IssuedCoupon> issuedCoupons) {
+    public void issueCoupon(List<IssuedCoupon> issuedCoupons) {
         checkRemainingIssueCoupon(issuedCoupons);
         checkIssuableStatus();
 

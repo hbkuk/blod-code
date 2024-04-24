@@ -13,7 +13,6 @@ import com.shop.core.coupon.presentation.dto.CouponRequest;
 import com.shop.core.coupon.presentation.dto.CouponResponse;
 import com.shop.core.coupon.presentation.dto.CouponStatusRequest;
 import com.shop.core.issuedCoupon.domain.IssuedCoupon;
-import com.shop.core.issuedCoupon.domain.IssuedCouponRepository;
 import com.shop.core.issuedCoupon.domain.IssuedCouponStatus;
 import com.shop.core.issuedCoupon.presentation.dto.CouponIssueRequest;
 import com.shop.core.issuedCoupon.presentation.dto.CouponIssueResponse;
@@ -35,8 +34,6 @@ public class CouponService {
     private final MemberService memberService;
 
     private final CouponRepository couponRepository;
-
-    private final IssuedCouponRepository issuedCouponRepository;
 
     public CouponResponse findById(Long couponId, LoginUser loginUser) {
         verifyAdminByEmail(loginUser);
@@ -81,9 +78,7 @@ public class CouponService {
         Coupon coupon = couponRepository.findByCouponId(request.getCouponId());
         List<IssuedCoupon> issuedCoupons = toIssuedCoupons(request, coupon);
 
-        coupon.deductCouponCount(issuedCoupons);
-        issuedCouponRepository.saveAll(issuedCoupons);
-        
+        coupon.issueCoupon(issuedCoupons);
         return CouponIssueResponse.of(issuedCoupons);
     }
 

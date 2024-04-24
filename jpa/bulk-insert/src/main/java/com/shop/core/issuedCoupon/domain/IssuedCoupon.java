@@ -17,12 +17,6 @@ public class IssuedCoupon {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long code;
 
-//    @Id
-//    @GeneratedValue(generator = "uuid2")
-//    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-//    @Column(name = "COUPON_CODE", columnDefinition = "BINARY(16)")
-//    private UUID code;
-
     @JoinColumn(name = "MEMBER_EMAIL")
     private String memberEmail;
 
