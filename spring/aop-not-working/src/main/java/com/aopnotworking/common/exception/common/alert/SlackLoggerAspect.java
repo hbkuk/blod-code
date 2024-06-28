@@ -1,13 +1,13 @@
 package com.aopnotworking.common.exception.common.alert;
 
+import static com.aopnotworking.common.exception.common.alert.ExceptionWrapper.extractExceptionWrapper;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
-
-import static com.aopnotworking.common.exception.common.alert.ExceptionWrapper.extractExceptionWrapper;
 
 /**
  * {@code @SlackLogger} 어노테이션이 적용된 메서드에 대한 Aspect
