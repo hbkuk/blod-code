@@ -24,6 +24,13 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
+    // test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation("org.junit.platform:junit-platform-suite:1.10.0")
+    testImplementation("org.junit.platform:junit-platform-suite-api:1.10.0")
+    testImplementation("org.junit.platform:junit-platform-commons:1.10.0")
+    testImplementation("org.junit.platform:junit-platform-engine:1.10.0")
+
 }
 
 test {
